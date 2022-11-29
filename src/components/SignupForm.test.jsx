@@ -6,7 +6,7 @@ import theme from '../styles/theme';
 
 import SignupForm from './SignupForm';
 
-test('SignupForm', async () => {
+test('SignupForm', () => {
   render((
     <ThemeProvider theme={theme}>
       <SignupForm />

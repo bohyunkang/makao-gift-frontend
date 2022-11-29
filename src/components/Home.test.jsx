@@ -6,7 +6,7 @@ import theme from '../styles/theme';
 
 import Home from './Home';
 
-test('Home', async () => {
+test('Home', () => {
   render((
     <ThemeProvider theme={theme}>
       <Home />

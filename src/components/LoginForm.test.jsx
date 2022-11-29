@@ -8,7 +8,7 @@ import theme from '../styles/theme';
 
 import LoginForm from './LoginForm';
 
-test('Home', async () => {
+test('LoginForm', () => {
   render((
     <ThemeProvider theme={theme}>
       <MemoryRouter>
