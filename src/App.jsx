@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import { Reset } from 'styled-reset';
 
@@ -24,16 +24,22 @@ export default function App() {
       <Reset />
       <GlobalStyle />
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:id" element={<ProductDetailPage />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/orders/:id" element={<OrderDetailPage />} />
-        <Route path="/order" element={<OrderPage />} />
-      </Routes>
+      <Main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/orders/:id" element={<OrderDetailPage />} />
+          <Route path="/order" element={<OrderPage />} />
+        </Routes>
+      </Main>
     </ThemeProvider>
   );
 }
+
+const Main = styled.main`
+  height: calc(100vh - 64px);
+`;
