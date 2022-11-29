@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     color: ${((props) => props.theme.text.primary)};
     background-color: ${((props) => props.theme.colors.background)};
-    font-size: ${((props) => props.theme.spacing.default)};
+    font-size: ${((props) => props.theme.size.default)};
   }
   
   a {

@@ -1,5 +1,9 @@
+import ProductsBanner from '../components/ProductsBanner';
+
 export default function ProductsPage() {
   return (
-    <div>ProductsPage</div>
+    <div>
+      <ProductsBanner />
+    </div>
   );
 }

@@ -1,12 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { ThemeProvider } from 'styled-components';
 
-import Header from './Header';
-
 import theme from '../styles/theme';
+
+import Header from './Header';
 
 const navigate = jest.fn();
 

@@ -34,7 +34,7 @@ const Description = styled.article`
   font-weight: 700;
 
   em {
-    font-size: ${((props) => props.theme.spacing.h4)};
+    font-size: ${((props) => props.theme.size.h4)};
     color: ${((props) => props.theme.colors.secondary)};
   }
 
@@ -43,7 +43,7 @@ const Description = styled.article`
 
     margin-block: 24px;
 
-    font-size: ${((props) => props.theme.spacing.h2)};
+    font-size: ${((props) => props.theme.size.h2)};
     color: ${((props) => props.theme.text.primary)};
   }
 `;
