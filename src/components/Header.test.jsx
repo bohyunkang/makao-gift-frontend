@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { ThemeProvider } from 'styled-components';

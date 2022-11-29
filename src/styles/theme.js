@@ -8,7 +8,7 @@ const theme = {
     mouseOver: '#006148',
   },
   colors: {
-    background: '#ffffff',
+    background: '#f5f5f5',
     primary: '#22daab',
     secondary: '#fcbe2c',
     active: '#008C68',
