@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 
 import { Reset } from 'styled-reset';
 
+import GlobalStyle from './styles/GlobalStyle';
+
 import theme from './styles/theme';
 
 import HomePage from './pages/HomePage';
@@ -14,11 +16,14 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import OrdersPage from './pages/OrdersPage';
 import OrderDetailPage from './pages/OrderDetailPage';
 import OrderPage from './pages/OrderPage';
+import Header from './components/Header';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Reset />
+      <GlobalStyle />
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

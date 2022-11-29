@@ -12,6 +12,7 @@ const theme = {
     primary: '#22daab',
     active: '#008C68',
     inactive: '#8d8d8d',
+    border: '#d9d9d9',
   },
 };
 
