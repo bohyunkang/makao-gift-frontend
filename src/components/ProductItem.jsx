@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+// TODO: props 수정되어야 함
 export default function ProductItem({
   id, image, maker, title, price,
 }) {
