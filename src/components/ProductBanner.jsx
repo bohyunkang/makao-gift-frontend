@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Banner from '../assets/images/products-banner.png';
 
-export default function ProductsBanner() {
+export default function ProductBanner() {
   return (
     <Container image={Banner}>
       <Description>
@@ -17,9 +17,6 @@ export default function ProductsBanner() {
     </Container>
   );
 }
-
-// 왼쪽 #F9DA6D
-// 오른쪽 #FFFB87
 
 const Container = styled.div`
   display: flex;
