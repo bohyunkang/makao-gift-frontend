@@ -13,7 +13,7 @@ export default function ProductsList() {
       {products.length ? (
         <>
           <h2>인기선물을 한 자리에 모았어요</h2>
-          <Wrapper>
+          <Items>
             {/* TODO: 페이지네이션 기능 구현 필요!(slice 제거) */}
             {products.slice(0, 8).map((product) => (
               <ProductItem
@@ -21,9 +21,11 @@ export default function ProductsList() {
                 product={product}
               />
             ))}
-          </Wrapper>
+          </Items>
         </>
-      ) : (<p>상품이 존재하지 않습니다</p>)}
+      ) : (
+        <NoContent>상품이 존재하지 않습니다</NoContent>
+      )}
     </Container>
   );
 }
@@ -39,8 +41,16 @@ const Container = styled.article`
   }
 `;
 
-const Wrapper = styled.article`
+const Items = styled.article`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+`;
+
+const NoContent = styled.p`
+  margin-top: 80px;
+
+  font-weight: 700;
+  font-size: ${((props) => props.theme.size.h4)};
+  text-align: center;
 `;

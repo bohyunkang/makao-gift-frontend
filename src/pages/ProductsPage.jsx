@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import styled from 'styled-components';
+
 import useProductStore from '../hooks/useProductStore';
 
 import ProductList from '../components/ProductList';
@@ -13,9 +15,13 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div>
+    <Container>
       <ProductBanner />
       <ProductList />
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  height: 100%;
+`;
