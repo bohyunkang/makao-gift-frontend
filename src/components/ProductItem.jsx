@@ -14,8 +14,8 @@ export default function ProductItem({ product }) {
           <div className="image-wrapper">
             <img className="image" src={imageUrl} alt="상품 이미지" />
           </div>
-          <em>{maker}</em>
-          <p>{title}</p>
+          <h4>{maker}</h4>
+          <h3>{title}</h3>
           <strong>{price}</strong>
         </div>
       </Link>
