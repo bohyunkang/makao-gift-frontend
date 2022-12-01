@@ -31,7 +31,7 @@ Scenario('로그인하지 않고 상품 목록을 확인하는 경우', ({ I }) 
 
 Scenario('상품이 존재하지 않는 경우', ({ I }) => {
   // Given
-  I.setupDatabase();
+  I.resetDatabase();
   I.amOnPage('/');
 
   // When

@@ -12,7 +12,7 @@ export default class ApiService {
 
     const { data } = await axios.get(url);
 
-    const { products } = data;
+    const { product: products } = data;
 
     return products;
   }

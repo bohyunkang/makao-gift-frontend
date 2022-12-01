@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
-// TODO: props 수정되어야 함
-export default function ProductItem({
-  id, image, maker, title, price,
-}) {
+export default function ProductItem({ product }) {
+  const {
+    id, imageUrl, maker, title, price,
+  } = product;
+
   return (
     <Container>
       <Link to={`products/${id}`}>
         <div>
-          <div className="img" />
+          <div className="image-wrapper">
+            <img className="image" src={imageUrl} alt="상품 이미지" />
+          </div>
           <em>{maker}</em>
           <p>{title}</p>
           <strong>{price}</strong>
@@ -20,14 +24,19 @@ export default function ProductItem({
 }
 
 const Container = styled.article`
-  border: 1px solid red;
+  width: 280px;
 
-  .img {
-    background-color: #ddd;
+  // TODO: 상품 레이아웃 추가 스타일링 필요!
+  border: 1px solid #fcbe2c;
 
-    width: 280px;
-    height: 280px;
+  .image-wrapper {
+    overflow: hidden;
 
     border-radius: .5em;
+
+    .image {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;

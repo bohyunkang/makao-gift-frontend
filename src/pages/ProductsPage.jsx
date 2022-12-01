@@ -2,13 +2,11 @@ import { useEffect } from 'react';
 
 import useProductStore from '../hooks/useProductStore';
 
-import ProductItem from '../components/ProductItem';
-import ProductsBanner from '../components/ProductsBanner';
+import ProductList from '../components/ProductList';
+import ProductBanner from '../components/ProductBanner';
 
 export default function ProductsPage() {
   const productStore = useProductStore();
-
-  const { products } = productStore;
 
   useEffect(() => {
     productStore.fetchProducts();
@@ -16,13 +14,8 @@ export default function ProductsPage() {
 
   return (
     <div>
-      <ProductsBanner />
-      {products.map((product) => (
-        <ProductItem
-          key={product.id}
-          product={product}
-        />
-      ))}
+      <ProductBanner />
+      <ProductList />
     </div>
   );
 }
