@@ -4,12 +4,12 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from '../styles/theme';
 
-import ProductsBanner from './ProductsBanner';
+import ProductBanner from './ProductBanner';
 
-test('ProductsBanner', () => {
+test('ProductBanner', () => {
   render((
     <ThemeProvider theme={theme}>
-      <ProductsBanner />
+      <ProductBanner />
     </ThemeProvider>
   ));
 
