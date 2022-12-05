@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import Banner from '../assets/images/products-banner.png';
+import { images } from '../assets';
 
 export default function ProductBanner() {
   return (
-    <Container image={Banner}>
+    <Container image={images.banner}>
       <Description>
         <em>평범한 선물은 주기도 민망하다구요?</em>
         <strong>
@@ -25,7 +25,7 @@ const Container = styled.div`
   width: 100%;
   height: 320px;
 
-  padding-left: 380px;
+  padding-left: 12em;
 
   background: url(${({ image }) => image}) no-repeat 100% 100% #fce778;
 `;
