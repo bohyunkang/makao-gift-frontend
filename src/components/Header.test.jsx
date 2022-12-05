@@ -43,37 +43,37 @@ describe('Header', () => {
     screen.getByText(/로그인/);
   });
 
-  // context('로그인 된 경우', () => {
-  //   beforeEach(() => {
-  //     localStorage.removeItem('accessToken');
-  //   });
+  context('로그인 된 경우', () => {
+    beforeEach(() => {
+      localStorage.removeItem('accessToken');
+    });
 
-  //   it('로그인 버튼', () => {
-  //     renderHeader();
+    it('로그인 버튼', () => {
+      renderHeader();
 
-  //     screen.getByText(/로그인/);
-  //   });
-  // });
+      screen.getByText(/로그인/);
+    });
+  });
 
-  // context('로그인 안 된 경우', () => {
-  //   beforeEach(() => {
-  //     localStorage.setItem('accessToken', JSON.stringify('ACCESS.TOKEN'));
-  //   });
+  context('로그인 안 된 경우', () => {
+    beforeEach(() => {
+      localStorage.setItem('accessToken', JSON.stringify('ACCESS.TOKEN'));
+    });
 
-  //   it('로그아웃 버튼', () => {
-  //     renderHeader();
+    it('로그아웃 버튼', () => {
+      renderHeader();
 
-  //     screen.getByText(/로그아웃/);
-  //   });
-  // });
+      screen.getByText(/로그아웃/);
+    });
+  });
 
-  // context('로그아웃 버튼이 눌릴 경우', () => {
-  //   it('홈으로 리다이렉트된다.', () => {
-  //     renderHeader();
+  context('로그아웃 버튼이 눌릴 경우', () => {
+    it('홈으로 리다이렉트된다.', () => {
+      renderHeader();
 
-  //     fireEvent.click(screen.getByText(/로그아웃/));
+      fireEvent.click(screen.getByText(/로그아웃/));
 
-  //     expect(navigate).toBeCalledWith('/');
-  //   });
-  // });
+      expect(navigate).toBeCalledWith('/');
+    });
+  });
 });

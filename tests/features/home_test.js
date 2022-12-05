@@ -9,16 +9,16 @@ Scenario('로그인하지 않은 경우', ({ I }) => {
   I.see('로그인');
 });
 
-// Scenario('로그인한 경우', ({ I }) => {
-//   // Given
-//   I.setupDatabase();
+Scenario('로그인한 경우', ({ I }) => {
+  // Given
+  I.setupDatabase();
 
-//   // When
-//   I.amOnPage('/');
-//   I.login();
-//   I.amOnPage('/');
+  // When
+  I.amOnPage('/');
+  I.login();
+  I.amOnPage('/');
 
-//   // Then
-//   I.see('내 잔액: 50,000원');
-//   I.see('로그아웃');
-// });
+  // Then
+  I.see('내 잔액: 50,000원');
+  I.see('로그아웃');
+});
