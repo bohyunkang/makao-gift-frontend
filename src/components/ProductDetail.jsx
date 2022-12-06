@@ -15,22 +15,16 @@ import numberFormat from '../utils/numberFormat';
 import Button from './common/Button';
 
 export default function ProductDetail() {
-  const navigate = useNavigate();
-
-  const [isEnoughAmount, setIsEnoughAmount] = useState(true);
-
-  const [accessToken] = useLocalStorage('accessToken', '');
-
   const userStore = useUserStore();
   const productStore = useProductStore();
   const orderStore = useOrderStore();
 
-  const { amount } = userStore;
   const { product } = productStore;
-
   const {
     title, price, maker, description, imageUrl,
   } = product;
+
+  const [accessToken] = useLocalStorage('accessToken', '');
 
   const [quantity, setQuantity] = useState(1);
   const totalPrice = price * quantity;
@@ -47,6 +41,8 @@ export default function ProductDetail() {
     setQuantity((prev) => prev + 1);
   };
 
+  const navigate = useNavigate();
+
   const handleClickOrder = () => {
     if (!accessToken) {
       navigate('/login', { state: { previousPage: 'productDetail' } });
@@ -54,14 +50,12 @@ export default function ProductDetail() {
       return;
     }
 
-    if (amount < totalPrice) {
-      setIsEnoughAmount(false);
+    if (!userStore.isAffordable(totalPrice)) {
       return;
     }
 
-    orderStore.setOrderInformation({ quantity, totalPrice });
-
-    navigate('/order', { state: { title, maker, imageUrl } });
+    orderStore.setQuantityAndTotalPrice({ quantity, totalPrice });
+    navigate('/order');
   };
 
   return (
@@ -120,7 +114,8 @@ export default function ProductDetail() {
         >
           선물하기
         </Button>
-        {!isEnoughAmount && <Warning>❌ 잔액이 부족하여 선물하기가 불가합니다 ❌</Warning>}
+        {!userStore.isAffordable(totalPrice)
+        && <Warning>❌ 잔액이 부족하여 선물하기가 불가합니다 ❌</Warning>}
       </DescWrapper>
     </Container>
   );

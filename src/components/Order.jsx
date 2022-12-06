@@ -1,19 +1,18 @@
-import { useLocation } from 'react-router-dom';
-
 import styled from 'styled-components';
 
 import useOrderStore from '../hooks/useOrderStore';
+import useProductStore from '../hooks/useProductStore';
 
 import numberFormat from '../utils/numberFormat';
 
 import OrderForm from './OrderForm';
 
-// TODO: 로그인하지 않은 경우 접근 못하는 처리 필요!
 export default function Order() {
-  const { state } = useLocation();
-  const orderStore = useOrderStore();
+  const productStore = useProductStore();
+  const { product } = productStore;
+  const { title, maker, imageUrl } = product;
 
-  const { title, maker, imageUrl } = state;
+  const orderStore = useOrderStore();
   const { quantity, totalPrice } = orderStore;
 
   return (

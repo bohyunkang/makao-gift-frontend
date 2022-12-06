@@ -2,13 +2,43 @@ import styled from 'styled-components';
 
 import { useForm } from 'react-hook-form';
 
+import { useNavigate } from 'react-router-dom';
+
+import useUserStore from '../hooks/useUserStore';
+import useOrderStore from '../hooks/useOrderStore';
+import useProductStore from '../hooks/useProductStore';
+
 import Button from './common/Button';
 
 export default function OrderForm() {
+  const userStore = useUserStore();
+  const orderStore = useOrderStore();
+  const productStore = useProductStore();
+
+  const { product } = productStore;
+  const { id } = product;
+
+  const { quantity } = orderStore;
+
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = () => {
+  const navigate = useNavigate();
 
+  const onSubmit = async (data) => {
+    const { receiver, address, message } = data;
+
+    await orderStore.processOrder({
+      productId: id,
+      quantity,
+      receiver,
+      address,
+      message,
+    });
+
+    if (orderStore.isOrderSuccess) {
+      userStore.payAmount(orderStore.totalPrice);
+      navigate('/orders');
+    }
   };
 
   return (

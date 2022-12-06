@@ -45,6 +45,23 @@ const server = setupServer(
 
     return res(ctx.status(400));
   }),
+  rest.post(`${baseUrl}/orders`, async (req, res, ctx) => {
+    const {
+      productId, quantity, receiver, address, message,
+    } = await req.json();
+
+    if (productId && quantity > 0 && receiver && address) {
+      return res(
+        ctx.json({
+          id: 1,
+          productId: 1,
+          quantity: 1,
+        }),
+      );
+    }
+
+    return res(ctx.status(400));
+  }),
   rest.get(`${baseUrl}/users/me`, async (req, res, ctx) => res(
     ctx.json({
       accessToken: 'ACCESS.TOKEN',

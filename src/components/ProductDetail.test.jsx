@@ -81,16 +81,7 @@ describe('ProductDetail', () => {
 
         fireEvent.click(screen.getByText('선물하기'));
 
-        expect(navigate).toBeCalledWith(
-          '/order',
-          {
-            state: {
-              imageUrl: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-              maker: '제조사1',
-              title: '상품1',
-            },
-          },
-        );
+        expect(navigate).toBeCalledWith('/order');
       });
     });
   });

@@ -27,7 +27,7 @@ export default class UserStore extends Store {
       this.publish();
 
       return id;
-    } catch {
+    } catch (e) {
       this.changeSignupStatus('failed');
       this.publish();
 
@@ -61,18 +61,24 @@ export default class UserStore extends Store {
   }
 
   async fetchUser() {
-    const { name, amount, mutate } = await apiService.fetchUser();
+    const { name, amount } = await apiService.fetchUser();
 
     this.name = name;
     this.amount = amount;
 
     this.publish();
+  }
 
-    return { mutate };
+  isAffordable(amount) {
+    return this.amount >= amount;
   }
 
   setAmount(amount) {
     this.amount = amount;
+  }
+
+  payAmount(amount) {
+    this.amount -= amount;
   }
 
   changeSignupStatus(status) {

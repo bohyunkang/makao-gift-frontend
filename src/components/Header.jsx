@@ -9,13 +9,13 @@ import useUserStore from '../hooks/useUserStore';
 import numberFormat from '../utils/numberFormat';
 
 export default function Header() {
-  const navigate = useNavigate();
-
   const userStore = useUserStore();
 
   const { amount } = userStore;
 
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
+
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     setAccessToken('');
