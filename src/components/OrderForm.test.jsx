@@ -4,9 +4,9 @@ import {
 
 import { ThemeProvider } from 'styled-components';
 
-import theme from '../styles/theme';
-
 import { productStore } from '../stores/ProductStore';
+
+import theme from '../styles/theme';
 
 import OrderForm from './OrderForm';
 
@@ -17,8 +17,6 @@ jest.mock('react-router-dom', () => ({
     return navigate;
   },
 }));
-
-const context = describe;
 
 describe('OrderForm', () => {
   beforeEach(() => {
@@ -32,6 +30,20 @@ describe('OrderForm', () => {
       </ThemeProvider>
     ));
   }
+
+  const context = describe;
+
+  it('Order', async () => {
+    await productStore.fetchProduct({ id: 1 });
+
+    renderOrderForm();
+
+    await waitFor(() => {
+      screen.getByText(/구매수량/);
+      screen.getByText(/총 상품금액/);
+      screen.getByRole('button', { name: '선물하기' });
+    });
+  });
 
   context('주문에 성공했을 때', () => {
     it('주문 목록 페이지로 리다이렉트', async () => {
