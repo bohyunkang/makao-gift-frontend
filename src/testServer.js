@@ -71,7 +71,7 @@ const server = setupServer(
   )),
   rest.get(`${baseUrl}/products`, async (req, res, ctx) => res(
     ctx.json({
-      product: [
+      products: [
         {
           id: 1,
           title: '상품1',

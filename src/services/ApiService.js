@@ -75,7 +75,7 @@ export default class ApiService {
   async fetchProducts() {
     const { data } = await this.instance.get('/products');
 
-    const { product: products } = data;
+    const { products } = data;
 
     return products;
   }
