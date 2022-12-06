@@ -9,18 +9,27 @@ const baseUrl = config.apiBaseUrl;
 export default class ApiService {
   constructor() {
     this.accessToken = '';
+
+    this.instance = axios.create({
+      baseURL: baseUrl,
+    });
   }
 
   setAccessToken(accessToken) {
     this.accessToken = accessToken;
+
+    if (accessToken) {
+      this.instance = axios.create({
+        baseURL: baseUrl,
+        headers: { Authorization: `Bearer ${this.accessToken}` },
+      });
+    }
   }
 
   async postUser({
     name, username, password, confirmPassword,
   }) {
-    const url = `${baseUrl}/users`;
-
-    const { data } = await axios.post(url, {
+    const { data } = await this.instance.post('/users', {
       name, username, password, confirmPassword,
     });
 
@@ -30,24 +39,8 @@ export default class ApiService {
   }
 
   async postSession({ username, password }) {
-    const url = `${baseUrl}/session`;
-
-    const { data } = await axios.post(url, { username, password });
-
-    return {
-      accessToken: data.accessToken,
-      name: data.name,
-      amount: data.amount,
-    };
-  }
-
-  async fetchUser() {
-    const url = `${baseUrl}/users/me`;
-
-    const { data } = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${this.accessToken}`,
-      },
+    const { data } = await this.instance.post('/session', {
+      username, password,
     });
 
     return {
@@ -57,10 +50,30 @@ export default class ApiService {
     };
   }
 
-  async fetchProducts() {
-    const url = `${baseUrl}/products`;
+  async postOrder({
+    productId, quantity, receiver, address, message,
+  }) {
+    const { data } = await this.instance.post('/orders', {
+      productId, quantity, receiver, address, message,
+    });
 
-    const { data } = await axios.get(url);
+    return {
+      id: data.id,
+    };
+  }
+
+  async fetchUser() {
+    const { data } = await this.instance.get('/users/me');
+
+    return {
+      accessToken: data.accessToken,
+      name: data.name,
+      amount: data.amount,
+    };
+  }
+
+  async fetchProducts() {
+    const { data } = await this.instance.get('/products');
 
     const { product: products } = data;
 
@@ -68,9 +81,7 @@ export default class ApiService {
   }
 
   async fetchProduct(id) {
-    const url = `${baseUrl}/products/${id}`;
-
-    const { data } = await axios.get(url);
+    const { data } = await this.instance.get(`/products/${id}`);
 
     return data;
   }

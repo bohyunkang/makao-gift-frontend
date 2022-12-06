@@ -5,6 +5,7 @@ export default class ProductStore extends Store {
   constructor() {
     super();
 
+    this.product = {};
     this.products = [];
   }
 
@@ -13,6 +14,14 @@ export default class ProductStore extends Store {
     this.publish();
 
     this.products = await apiService.fetchProducts();
+    this.publish();
+  }
+
+  async fetchProduct({ id }) {
+    this.product = {};
+    this.publish();
+
+    this.product = await apiService.fetchProduct(id);
     this.publish();
   }
 }
