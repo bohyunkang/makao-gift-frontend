@@ -64,12 +64,12 @@ export default function ProductDetail() {
         <img src={imageUrl} alt={title} />
       </ImageWrapper>
       <DescWrapper>
-        <h2>{title}</h2>
-        <h3>
+        <Title>{title}</Title>
+        <Price>
           {numberFormat(price)}
           원
-        </h3>
-        <table>
+        </Price>
+        <Table>
           <tbody>
             <tr>
               <th>제조사</th>
@@ -79,6 +79,7 @@ export default function ProductDetail() {
               <th>구매수량</th>
               <td>
                 <div>
+                  {/* TODO: 버튼 마크업 추가! */}
                   <button
                     type="button"
                     onClick={handleClickDecrease}
@@ -100,14 +101,15 @@ export default function ProductDetail() {
               <td>{description}</td>
             </tr>
           </tbody>
-        </table>
-        <h3>
+        </Table>
+        <TotalPrice>
           총 상품금액:
+          {'  '}
           <strong>
             {numberFormat(totalPrice)}
             원
           </strong>
-        </h3>
+        </TotalPrice>
         <Button
           type="button"
           onClick={handleClickOrder}
@@ -122,17 +124,90 @@ export default function ProductDetail() {
 }
 
 const Container = styled.article`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
+  padding-inline: 10em;
+  padding-top: 80px;
+
+  color: ${((props) => props.theme.text.secondary)};
 `;
 
 const ImageWrapper = styled.div`
-  
+  width: 600px;
+  height: 600px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const DescWrapper = styled.div`
+  width: 500px;
 
 `;
 
+const Title = styled.h3`
+  margin-bottom: 24px;
+
+  font-size: ${((props) => props.theme.size.h3)};
+  font-weight: 500;
+`;
+
+const Price = styled.h2`
+  margin-bottom: 40px;
+
+  font-size: ${((props) => props.theme.size.h1)};
+  font-weight: 700;
+`;
+
+const Table = styled.table`
+  width: 100%;
+
+  tr {
+    border-top: 1px solid ${((props) => props.theme.colors.border)};
+    border-bottom: 1px solid ${((props) => props.theme.colors.border)};
+  }
+
+  th {
+    padding-right: 60px;
+
+    color: #666666;
+
+    font-size: ${((props) => props.theme.size.default)};
+    font-weight: 500;
+    text-align: left;
+  }
+
+  td {
+    font-size: ${((props) => props.theme.size.h5)};
+  }
+
+  th, td {
+    padding-block: 20px;
+  }
+`;
+
+const TotalPrice = styled.h3`
+  margin-block: 30px;
+
+  font-size: ${((props) => props.theme.size.default)};
+  font-weight: 500;
+  text-align: right;
+
+  strong {
+    vertical-align: middle;
+
+    font-size: ${((props) => props.theme.size.h1)};
+    font-weight: 700;
+  }
+`;
+
 const Warning = styled.p`
-  
+  margin-top: 20px;
+
+  color: ${((props) => props.theme.text.red)};
+  text-align: center;
 `;
