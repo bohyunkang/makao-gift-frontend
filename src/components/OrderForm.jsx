@@ -7,7 +7,7 @@ import useUserStore from '../hooks/useUserStore';
 import useProductStore from '../hooks/useProductStore';
 import useOrderStore from '../hooks/useOrderStore';
 
-import numberFormat from '../utils/numberFormat';
+import { numberFormat } from '../utils/format';
 
 import Input from './common/Input';
 import Button from './common/Button';

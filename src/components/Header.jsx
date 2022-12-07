@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import useUserStore from '../hooks/useUserStore';
 
-import numberFormat from '../utils/numberFormat';
+import { numberFormat } from '../utils/format';
 
 export default function Header() {
   const userStore = useUserStore();

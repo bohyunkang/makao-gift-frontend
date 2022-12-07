@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import numberFormat from '../utils/numberFormat';
+import { numberFormat } from '../utils/format';
 
 export default function ProductItem({ product }) {
   const {
