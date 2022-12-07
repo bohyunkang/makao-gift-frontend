@@ -17,6 +17,8 @@ test('ProductsPage', async () => {
     </MemoryRouter>
   ));
 
+  screen.getByText(/상품이 존재하지 않습니다/);
+
   await waitFor(() => {
     screen.getByText(/인기선물을 한 자리에 모았어요/);
   });
