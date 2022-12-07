@@ -38,4 +38,26 @@ describe('OrderStore', () => {
       expect(orderStore.isOrderFailed).toBeTruthy();
     });
   });
+
+  context('fetchOrders', () => {
+    it('주문 목록 조회하기', async () => {
+      const orderStore = new OrderStore();
+
+      await orderStore.fetchOrders();
+
+      expect(orderStore.orders[0].receiver).toBe('전제나');
+      expect(orderStore.orders[1].receiver).toBe('최쥬쥬');
+    });
+  });
+
+  context('fetchOrder', () => {
+    it('주문 상세 조회하기', async () => {
+      const orderStore = new OrderStore();
+
+      await orderStore.fetchOrder({ id: 1 });
+
+      expect(orderStore.order.receiver).toBe('전제나');
+      expect(orderStore.order.address).toBe('서울시 사랑구 행복동');
+    });
+  });
 });

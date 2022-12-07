@@ -101,6 +101,68 @@ const server = setupServer(
       imageUrl: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
     }),
   )),
+  rest.get(`${baseUrl}/orders`, async (req, res, ctx) => res(
+    ctx.json({
+      orders: [
+        {
+          id: 1,
+          quantity: 1,
+          totalPrice: 10000,
+          receiver: '전제나',
+          address: '서울시 사랑구 행복동',
+          message: '제나야 메리 크리스마스!',
+          product: {
+            id: 1,
+            title: '상품1',
+            price: 10000,
+            maker: '제조사1',
+            description: '이 상품1은 이러이러합니다',
+            imageUrl: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+          },
+          createdAt: '2021-08-01T17:57:23.929359',
+          updatedAt: '2021-08-01T17:57:23.929359',
+        },
+        {
+          id: 2,
+          quantity: 1,
+          totalPrice: 10000,
+          receiver: '최쥬쥬',
+          address: '서울시 행복구 사랑동',
+          message: '쥬쥬야 메리 크리스마스!',
+          product: {
+            id: 1,
+            title: '상품1',
+            price: 10000,
+            maker: '제조사1',
+            description: '이 상품1은 이러이러합니다',
+            imageUrl: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+          },
+          createdAt: '2021-08-01T17:57:23.929359',
+          updatedAt: '2021-08-01T17:57:23.929359',
+        },
+      ],
+    }),
+  )),
+  rest.get(`${baseUrl}/orders/1`, async (req, res, ctx) => res(
+    ctx.json({
+      id: 1,
+      quantity: 1,
+      totalPrice: 10000,
+      receiver: '전제나',
+      address: '서울시 사랑구 행복동',
+      message: '제나야 메리 크리스마스!',
+      product: {
+        id: 1,
+        title: '상품1',
+        price: 10000,
+        maker: '제조사1',
+        description: '이 상품1은 이러이러합니다',
+        imageUrl: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      },
+      createdAt: '2021-08-01T17:57:23.929359',
+      updatedAt: '2021-08-01T17:57:23.929359',
+    }),
+  )),
 );
 
 export default server;

@@ -85,6 +85,20 @@ export default class ApiService {
 
     return data;
   }
+
+  async fetchOrders() {
+    const { data } = await this.instance.get('/orders');
+
+    const { orders } = data;
+
+    return orders;
+  }
+
+  async fetchOrder(id) {
+    const { data } = await this.instance.get(`/orders/${id}`);
+
+    return data;
+  }
 }
 
 export const apiService = new ApiService();
