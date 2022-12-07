@@ -1,4 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  fireEvent, render, screen, waitFor,
+} from '@testing-library/react';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -82,6 +84,23 @@ describe('ProductDetail', () => {
         fireEvent.click(screen.getByText('선물하기'));
 
         expect(navigate).toBeCalledWith('/order');
+      });
+    });
+
+    context('잔액이 부족한 경우', () => {
+      it('잔액이 부족하다는 메시지 출력', async () => {
+        localStorage.setItem('accessToken', JSON.stringify('ACCESS.TOKEN'));
+        userStore.setAmount(0);
+
+        await productStore.fetchProduct({ id: 1 });
+
+        renderProductDetail();
+
+        fireEvent.click(screen.getByText('선물하기'));
+
+        await waitFor(() => {
+          screen.getByText('❌ 잔액이 부족하여 선물하기가 불가합니다 ❌');
+        });
       });
     });
   });

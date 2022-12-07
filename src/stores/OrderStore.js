@@ -14,6 +14,7 @@ export default class OrderStore extends Store {
     this.message = '';
 
     this.orders = [];
+    this.order = {};
   }
 
   async processOrder({
@@ -44,6 +45,22 @@ export default class OrderStore extends Store {
 
       return '';
     }
+  }
+
+  async fetchOrders() {
+    this.orders = [];
+    this.publish();
+
+    this.orders = await apiService.fetchOrders();
+    this.publish();
+  }
+
+  async fetchOrder({ id }) {
+    this.order = {};
+    this.publish();
+
+    this.order = await apiService.fetchOrder(id);
+    this.publish();
   }
 
   setQuantityAndTotalPrice({

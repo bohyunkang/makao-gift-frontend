@@ -1,31 +1,30 @@
 import styled from 'styled-components';
 
-import useProductStore from '../hooks/useProductStore';
+import useOrderStore from '../hooks/useOrderStore';
 
-import ProductItem from './ProductItem';
+import OrderItem from './OrderItem';
 
-export default function ProductsList() {
-  const productStore = useProductStore();
+export default function OrderList() {
+  const orderStore = useOrderStore();
 
-  const { products } = productStore;
+  const { orders } = orderStore;
 
   return (
     <Container>
-      {products.length ? (
+      {orders.length ? (
         <>
-          <Title>인기선물을 한 자리에 모았어요</Title>
+          <Title>내가 주문한 내역입니다</Title>
           <Items>
-            {/* TODO: 페이지네이션 기능 구현 필요!(slice 제거) */}
-            {products.slice(0, 8).map((product) => (
-              <ProductItem
-                key={product.id}
-                product={product}
+            {orders.map((order) => (
+              <OrderItem
+                key={order.id}
+                order={order}
               />
             ))}
           </Items>
         </>
       ) : (
-        <NoContent>상품이 존재하지 않습니다</NoContent>
+        <NoContent>내가 주문한 내역이 없습니다</NoContent>
       )}
     </Container>
   );

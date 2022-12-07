@@ -4,22 +4,26 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
 
+import { orderStore } from '../stores/OrderStore';
+
 import theme from '../styles/theme';
 
-import ProductsPage from './ProductsPage';
+import OrderList from './OrderList';
 
-test('ProductsPage', async () => {
+test('OrderList', async () => {
+  orderStore.fetchOrders();
+
   render((
     <MemoryRouter>
       <ThemeProvider theme={theme}>
-        <ProductsPage />
+        <OrderList />
       </ThemeProvider>
     </MemoryRouter>
   ));
 
-  screen.getByText(/상품이 존재하지 않습니다/);
+  screen.getByText(/내가 주문한 내역이 없습니다/);
 
   await waitFor(() => {
-    screen.getByText(/인기선물을 한 자리에 모았어요/);
+    screen.getByText(/내가 주문한 내역입니다/);
   });
 });

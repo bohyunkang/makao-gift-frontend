@@ -10,7 +10,7 @@ import useUserStore from '../hooks/useUserStore';
 import useProductStore from '../hooks/useProductStore';
 import useOrderStore from '../hooks/useOrderStore';
 
-import numberFormat from '../utils/numberFormat';
+import { numberFormat } from '../utils/format';
 
 import Button from './common/Button';
 
@@ -26,6 +26,7 @@ export default function ProductDetail() {
 
   const [accessToken] = useLocalStorage('accessToken', '');
 
+  const [isClicked, setIsClicked] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const totalPrice = price * quantity;
 
@@ -51,6 +52,7 @@ export default function ProductDetail() {
     }
 
     if (!userStore.isAffordable(totalPrice)) {
+      setIsClicked(true);
       return;
     }
 
@@ -116,7 +118,7 @@ export default function ProductDetail() {
         >
           선물하기
         </Button>
-        {!userStore.isAffordable(totalPrice)
+        {isClicked && !userStore.isAffordable(totalPrice)
         && <Warning>❌ 잔액이 부족하여 선물하기가 불가합니다 ❌</Warning>}
       </DescWrapper>
     </Container>

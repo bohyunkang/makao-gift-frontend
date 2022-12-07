@@ -6,20 +6,20 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from '../styles/theme';
 
-import ProductsPage from './ProductsPage';
+import OrdersPage from './OrdersPage';
 
-test('ProductsPage', async () => {
+test('OrdersPage', async () => {
   render((
     <MemoryRouter>
       <ThemeProvider theme={theme}>
-        <ProductsPage />
+        <OrdersPage />
       </ThemeProvider>
     </MemoryRouter>
   ));
 
-  screen.getByText(/상품이 존재하지 않습니다/);
+  screen.getByText(/내가 주문한 내역이 없습니다/);
 
   await waitFor(() => {
-    screen.getByText(/인기선물을 한 자리에 모았어요/);
+    screen.getByText(/내가 주문한 내역입니다/);
   });
 });

@@ -2,24 +2,23 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { numberFormat } from '../utils/format';
-
-export default function ProductItem({ product }) {
+export default function OrderItem({ order }) {
   const {
-    id, imageUrl, maker, title, price,
-  } = product;
+    id, product, receiver,
+  } = order;
 
   return (
-    <Link to={`/products/${id}`}>
+    <Link to={`/orders/${id}`}>
       <Container>
         <ImageWrapper>
-          <img src={imageUrl} alt={title} />
+          <img src={product.imageUrl} alt={product.title} />
         </ImageWrapper>
-        <h4>{maker}</h4>
-        <h3>{title}</h3>
+        <h4>{product.maker}</h4>
+        <h3>{product.title}</h3>
         <strong>
-          {numberFormat(price)}
-          원
+          To.
+          {' '}
+          {receiver}
         </strong>
       </Container>
     </Link>
@@ -52,8 +51,8 @@ const Container = styled.li`
   }
 
   strong {
-    font-size:  ${((props) => props.theme.size.h5)};
-    font-weight: 500;
+    font-size:  ${((props) => props.theme.size.default)};
+    font-weight: 700;
     color: ${((props) => props.theme.text.secondary)};
   }
 `;

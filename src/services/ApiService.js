@@ -75,13 +75,27 @@ export default class ApiService {
   async fetchProducts() {
     const { data } = await this.instance.get('/products');
 
-    const { product: products } = data;
+    const { products } = data;
 
     return products;
   }
 
   async fetchProduct(id) {
     const { data } = await this.instance.get(`/products/${id}`);
+
+    return data;
+  }
+
+  async fetchOrders() {
+    const { data } = await this.instance.get('/orders');
+
+    const { orders } = data;
+
+    return orders;
+  }
+
+  async fetchOrder(id) {
+    const { data } = await this.instance.get(`/orders/${id}`);
 
     return data;
   }
