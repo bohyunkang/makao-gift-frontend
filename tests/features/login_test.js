@@ -13,71 +13,91 @@ Scenario('로그인 페이지에 접속한 경우', ({ I }) => {
   I.see('회원가입');
 });
 
-// Scenario('잘못된 아이디나 비밀번호를 입력한 경우', ({ I }) => {
-//   // Given
-//   I.setupDatabase();
-//   I.amOnPage('/');
+Scenario('잘못된 아이디나 비밀번호를 입력한 경우', ({ I }) => {
+  // Given
+  I.setupDatabase();
+  I.amOnPage('/');
 
-//   // When
-//   I.click('로그인');
-//   I.amOnPage('/login');
+  // When
+  I.click('로그인');
+  I.amOnPage('/login');
 
-//   I.fillField('아이디', 'xxx');
-//   I.fillField('비밀번호', 'xxx');
+  I.fillField('아이디', 'xxx');
+  I.fillField('비밀번호', 'xxx');
 
-//   I.click('[type=submit]');
+  I.click('[type=submit]');
 
-//   // Then
-//   I.see('아이디 혹은 비밀번호가 맞지 않습니다');
-// });
+  // Then
+  I.see('아이디 혹은 비밀번호가 맞지 않습니다');
+});
 
-// Scenario('아이디를 입력하지 않은 채 로그인을 시도하는 경우', ({ I }) => {
-//   // Given
-//   I.setupDatabase();
-//   I.amOnPage('/');
+Scenario('아이디와 비밀번호를 입력하지 않은 채 로그인을 시도하는 경우', ({ I }) => {
+  // Given
+  I.setupDatabase();
+  I.amOnPage('/');
 
-//   // When
-//   I.click('로그인');
-//   I.amOnPage('/login');
+  // When
+  I.click('로그인');
+  I.amOnPage('/login');
 
-//   I.fillField('비밀번호', 'Test1234!');
+  I.fillField('아이디', '');
+  I.fillField('비밀번호', '');
 
-//   I.click('[type=submit]');
+  I.click('[type=submit]');
 
-//   // Then
-//   I.see('아이디를 입력해주세요');
-// });
+  // Then
+  I.see('아이디와 비밀번호를 입력해주세요');
+});
 
-// Scenario('비밀번호를 입력하지 않은 채 로그인을 시도하는 경우', ({ I }) => {
-//   // Given
-//   I.setupDatabase();
-//   I.amOnPage('/');
+Scenario('아이디를 입력하지 않은 채 로그인을 시도하는 경우', ({ I }) => {
+  // Given
+  I.setupDatabase();
+  I.amOnPage('/');
 
-//   // When
-//   I.click('로그인');
-//   I.amOnPage('/login');
+  // When
+  I.click('로그인');
+  I.amOnPage('/login');
 
-//   I.fillField('아이디', 'boni1234');
+  I.fillField('아이디', '');
+  I.fillField('비밀번호', 'Test1234!');
 
-//   I.click('[type=submit]');
+  I.click('[type=submit]');
 
-//   // Then
-//   I.see('비밀번호를 입력해주세요');
-// });
+  // Then
+  I.see('아이디를 입력해주세요');
+});
 
-// Scenario('회원가입 버튼을 클릭한 경우', ({ I }) => {
-//   // Given
-//   I.setupDatabase();
-//   I.amOnPage('/');
+Scenario('비밀번호를 입력하지 않은 채 로그인을 시도하는 경우', ({ I }) => {
+  // Given
+  I.setupDatabase();
+  I.amOnPage('/');
 
-//   // When
-//   I.click('로그인');
-//   I.amOnPage('/login');
-//   I.click('회원가입');
+  // When
+  I.click('로그인');
+  I.amOnPage('/login');
 
-//   // Then
-//   I.amOnPage('/signup');
-// });
+  I.fillField('아이디', 'boni1234');
+  I.fillField('비밀번호', '');
+
+  I.click('[type=submit]');
+
+  // Then
+  I.see('비밀번호를 입력해주세요');
+});
+
+Scenario('회원가입 버튼을 클릭한 경우', ({ I }) => {
+  // Given
+  I.setupDatabase();
+  I.amOnPage('/');
+
+  // When
+  I.click('로그인');
+  I.amOnPage('/login');
+  I.click('회원가입');
+
+  // Then
+  I.amOnPage('/signup');
+});
 
 Scenario('로그인에 성공한 경우', ({ I }) => {
   // Given

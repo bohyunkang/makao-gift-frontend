@@ -79,7 +79,7 @@ describe('LoginForm', () => {
   });
 
   context('로그인에 실패했을 때', () => {
-    it('로그인 실패', async () => {
+    it('잘못된 유저 정보로 로그인을 시도하는 경우', async () => {
       renderLoginForm({ state: {} });
 
       fireEvent.change(screen.getByPlaceholderText('아이디'), {
@@ -94,6 +94,64 @@ describe('LoginForm', () => {
 
       await waitFor(() => {
         expect(userStore.isLoginFailed).toBeTruthy();
+        screen.getByText('아이디 혹은 비밀번호가 맞지 않습니다');
+      });
+    });
+
+    it('아이디와 비밀번호를 입력하지 않은 경우', async () => {
+      renderLoginForm({ state: {} });
+
+      fireEvent.change(screen.getByPlaceholderText('아이디'), {
+        target: { value: '' },
+      });
+
+      fireEvent.change(screen.getByPlaceholderText('비밀번호'), {
+        target: { value: '' },
+      });
+
+      fireEvent.click(screen.getByRole('button', { name: '로그인하기' }));
+
+      await waitFor(() => {
+        expect(userStore.isLoginFailed).toBeTruthy();
+        screen.getByText('아이디와 비밀번호를 입력해주세요');
+      });
+    });
+
+    it('아이디를 입력하지 않은 경우', async () => {
+      renderLoginForm({ state: {} });
+
+      fireEvent.change(screen.getByPlaceholderText('아이디'), {
+        target: { value: '' },
+      });
+
+      fireEvent.change(screen.getByPlaceholderText('비밀번호'), {
+        target: { value: 'Test1234!' },
+      });
+
+      fireEvent.click(screen.getByRole('button', { name: '로그인하기' }));
+
+      await waitFor(() => {
+        expect(userStore.isLoginFailed).toBeTruthy();
+        screen.getByText('아이디를 입력해주세요');
+      });
+    });
+
+    it('비밀번호를 입력하지 않은 경우', async () => {
+      renderLoginForm({ state: {} });
+
+      fireEvent.change(screen.getByPlaceholderText('아이디'), {
+        target: { value: 'boni1234' },
+      });
+
+      fireEvent.change(screen.getByPlaceholderText('비밀번호'), {
+        target: { value: '' },
+      });
+
+      fireEvent.click(screen.getByRole('button', { name: '로그인하기' }));
+
+      await waitFor(() => {
+        expect(userStore.isLoginFailed).toBeTruthy();
+        screen.getByText('비밀번호를 입력해주세요');
       });
     });
   });
