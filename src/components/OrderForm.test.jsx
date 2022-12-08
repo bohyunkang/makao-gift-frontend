@@ -67,24 +67,24 @@ describe('OrderForm', () => {
     });
   });
 
-  // TODO: 예외처리 후 테스트 통과 확인 필요!
-  // context('주문에 실패했을 때', () => {
-  //   it('주문 실패', async () => {
-  //     renderOrderForm();
+  context('주문에 실패했을 때', () => {
+    it('', async () => {
+      renderOrderForm();
 
-  //     fireEvent.change(screen.getByPlaceholderText('아이디'), {
-  //       target: { value: '' },
-  //     });
+      fireEvent.change(screen.getByLabelText(/받는 분 성함/), {
+        target: { value: '' },
+      });
 
-  //     fireEvent.change(screen.getByPlaceholderText('비밀번호'), {
-  //       target: { value: '' },
-  //     });
+      fireEvent.change(screen.getByLabelText(/받는 분 주소/), {
+        target: { value: '' },
+      });
 
-  //     fireEvent.click(screen.getByRole('button', { name: '로그인하기' }));
+      fireEvent.click(screen.getByRole('button', { name: '선물하기' }));
 
-  //     await waitFor(() => {
-  //       expect(orderStore.isOrderFailed).toBeTruthy();
-  //     });
-  //   });
-  // });
+      await waitFor(() => {
+        screen.getByText('성함을 입력해주세요');
+        screen.getByText('주소를 입력해주세요');
+      });
+    });
+  });
 });
