@@ -85,7 +85,7 @@ export default function SignupForm() {
                 && errors.confirmPassword) || errors.username || userStore.isSignupFailed}
               {...register('username', {
                 required: true,
-                pattern: /^[A-Za-z0-9]{4,16}$/,
+                pattern: /^[a-z0-9]{4,16}$/,
               })}
             />
             {errors.username
