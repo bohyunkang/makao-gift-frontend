@@ -65,34 +65,34 @@ describe('SignupForm', () => {
     });
   });
 
-  // TODO: 회원가입 예외처리 후 테스트 통과 필요!
-  // context('회원가입 실패했을 때', () => {
-  //   it('회원가입 완료 페이지가 보이지 않는다', async () => {
-  //     renderSignupForm();
+  context('회원가입 실패했을 때', () => {
+    it('모든 항목이 입력되지 않은 경우', async () => {
+      renderSignupForm();
 
-  //     screen.getByRole('heading', { name: 'SIGN UP' });
+      fireEvent.change(screen.getByLabelText('이름:'), {
+        target: { value: '' },
+      });
 
-  //     fireEvent.change(screen.getByLabelText('이름:'), {
-  //       target: { value: 'xxx' },
-  //     });
+      fireEvent.change(screen.getByLabelText('아이디:'), {
+        target: { value: '' },
+      });
 
-  //     fireEvent.change(screen.getByLabelText('아이디:'), {
-  //       target: { value: 'xxx' },
-  //     });
+      fireEvent.change(screen.getByLabelText('비밀번호:'), {
+        target: { value: '' },
+      });
 
-  //     fireEvent.change(screen.getByLabelText('비밀번호:'), {
-  //       target: { value: 'xxx' },
-  //     });
+      fireEvent.change(screen.getByLabelText('비밀번호 확인:'), {
+        target: { value: '' },
+      });
 
-  //     fireEvent.change(screen.getByLabelText('비밀번호 확인:'), {
-  //       target: { value: 'xxx' },
-  //     });
+      fireEvent.click(screen.getByRole('button', { name: '회원가입' }));
 
-  //     fireEvent.click(screen.getByRole('button', { name: '회원가입' }));
-
-  //     await waitFor(() => {
-  //       expect(userStore.isSignupFailed).toBeTruthy();
-  //     });
-  //   });
-  // });
+      await waitFor(() => {
+        screen.getByText('이름을 다시 확인해주세요');
+        screen.getByText('아이디를 다시 확인해주세요');
+        expect(screen.getAllByText('비밀번호를 다시 확인해주세요')[0]).toBeInTheDocument();
+        expect(screen.getAllByText('비밀번호를 다시 확인해주세요')[1]).toBeInTheDocument();
+      });
+    });
+  });
 });

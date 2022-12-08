@@ -45,5 +45,6 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-nested-ternary': 'off',
   },
 };
