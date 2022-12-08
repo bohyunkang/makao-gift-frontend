@@ -48,16 +48,26 @@ export default function LoginForm({ location }) {
             type="text"
             name="username"
             placeholder="아이디"
-            {...register('username')}
+            error={(errors.username && errors.password)
+              || errors.username || userStore.isLoginFailed}
+            {...register('username', { required: true })}
           />
           <Input
             id="input-password"
             type="password"
             name="password"
             placeholder="비밀번호"
-            {...register('password')}
+            error={(errors.username && errors.password)
+              || errors.password || userStore.isLoginFailed}
+            {...register('password', { required: true })}
           />
         </Inputs>
+        <Error>
+          {errors.username && errors.password && <p>아이디와 비밀번호를 입력해주세요</p>}
+          {errors.username && !errors.password && (<p>아이디를 입력해주세요</p>)}
+          {!errors.username && errors.password && (<p>비밀번호를 입력해주세요</p>)}
+          {userStore.isLoginFailed && (<p>아이디 혹은 비밀번호가 맞지 않습니다</p>)}
+        </Error>
         <Button type="submit">로그인하기</Button>
         <Link to="/signup">회원가입</Link>
       </form>
@@ -92,5 +102,16 @@ const Title = styled.h2`
 `;
 
 const Inputs = styled.div`
-  margin-block: 60px;
+  margin-top: 60px;
+`;
+
+const Error = styled.div`
+  height: 60px;
+  
+  p {
+    padding-top: 20px;
+    
+    font-size: 15px;
+    color: ${((props) => props.theme.text.red)};
+  }
 `;

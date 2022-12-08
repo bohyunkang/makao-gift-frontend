@@ -43,4 +43,7 @@ module.exports = () => actor({
     this.see('내가 주문한 내역입니다');
     this.see('To. 전제나');
   },
+  submit() {
+    this.click('[type=submit]');
+  },
 });

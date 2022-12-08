@@ -16,6 +16,7 @@ const theme = {
     active: '#008C68',
     inactive: '#8d8d8d',
     border: '#d9d9d9',
+    red: '#ff424d',
     yellow: '#fff5bd',
   },
   size: {

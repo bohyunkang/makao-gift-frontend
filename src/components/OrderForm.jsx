@@ -77,9 +77,15 @@ export default function Order() {
               id="input-receiver"
               name="receiver"
               placeholder="홍길동"
-              {...register('receiver')}
+              error={(errors.receiver && errors.address) || errors.receiver}
+              {...register('receiver', {
+                required: true,
+                pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{3,7}$/,
+              })}
             />
-            <Message>3~7자까지 한글만 사용 가능</Message>
+            {errors.receiver
+              ? (<ErrorMessage>성함을 입력해주세요</ErrorMessage>)
+              : (<DefaultMessage>3~7자까지 한글만 사용 가능</DefaultMessage>)}
           </Inputs>
           <Inputs>
             <label htmlFor="input-address">받는 분 주소</label>
@@ -88,9 +94,12 @@ export default function Order() {
               type="text"
               id="input-address"
               name="address"
-              {...register('address')}
+              error={(errors.receiver && errors.address) || errors.address}
+              {...register('address', { required: true })}
             />
-            <Message>주소지를 입력해주세요</Message>
+            {errors.address
+              ? (<ErrorMessage>주소를 입력해주세요</ErrorMessage>)
+              : (<DefaultMessage>주소지를 입력해주세요</DefaultMessage>)}
           </Inputs>
           <Inputs>
             <label htmlFor="input-message">받는 분께 보내는 메시지</label>
@@ -100,7 +109,7 @@ export default function Order() {
               name="message"
               {...register('message')}
             />
-            <Message>100글자 이내로 입력해주세요</Message>
+            <DefaultMessage>100글자 이내로 입력해주세요</DefaultMessage>
           </Inputs>
           <ButtonWrapper>
             <Button type="submit">선물하기</Button>
@@ -190,8 +199,18 @@ const Inputs = styled.div`
   }
 `;
 
-const Message = styled.p`
+const ErrorMessage = styled.p`
   margin-top: 8px;
+
+  font-size: 15px;
+
+  color: ${((props) => props.theme.text.red)};
+`;
+
+const DefaultMessage = styled.p`
+  margin-top: 8px;
+
+  font-size: 15px;
 `;
 
 const ButtonWrapper = styled.div`
