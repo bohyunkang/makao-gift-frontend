@@ -1,10 +1,5 @@
 Feature('주문 내역 페이지');
 
-Before(({ I }) => {
-  I.setupDatabase();
-  I.amOnPage('/');
-});
-
 Scenario('주문한 내역이 하나도 없는 경우', ({ I }) => {
   // Given
   I.login();
@@ -20,6 +15,7 @@ Scenario('주문한 내역이 하나도 없는 경우', ({ I }) => {
 
 Scenario('주문한 내역이 있는 경우', ({ I }) => {
   // When
+  I.setupDatabase();
   I.makeOrder();
   I.amOnPage('/');
   I.click('주문조회');
