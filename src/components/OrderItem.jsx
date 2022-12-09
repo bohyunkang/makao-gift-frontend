@@ -2,29 +2,6 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-export default function OrderItem({ order }) {
-  const {
-    id, product, receiver,
-  } = order;
-
-  return (
-    <Link to={`/orders/${id}`}>
-      <Container>
-        <ImageWrapper>
-          <img src={product.imageUrl} alt={product.title} />
-        </ImageWrapper>
-        <h4>{product.maker}</h4>
-        <h3>{product.title}</h3>
-        <strong>
-          To.
-          {' '}
-          {receiver}
-        </strong>
-      </Container>
-    </Link>
-  );
-}
-
 const Container = styled.li`
   width: 280px;
   height: 100%;
@@ -69,3 +46,26 @@ const ImageWrapper = styled.div`
     height: 100%;
   }
 `;
+
+export default function OrderItem({ order }) {
+  const {
+    id, product, receiver,
+  } = order;
+
+  return (
+    <Link to={`/orders/${id}`}>
+      <Container>
+        <ImageWrapper>
+          <img src={product.imageUrl} alt={product.title} />
+        </ImageWrapper>
+        <h4>{product.maker}</h4>
+        <h3>{product.title}</h3>
+        <strong>
+          To.
+          {' '}
+          {receiver}
+        </strong>
+      </Container>
+    </Link>
+  );
+}

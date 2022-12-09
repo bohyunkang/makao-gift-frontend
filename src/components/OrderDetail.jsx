@@ -3,68 +3,6 @@ import useOrderStore from '../hooks/useOrderStore';
 
 import { numberFormat, dateFormat } from '../utils/format';
 
-export default function OrderDetail() {
-  const orderStore = useOrderStore();
-
-  const { order } = orderStore;
-
-  const {
-    quantity, totalPrice, receiver, address, message, product, createdAt,
-  } = order;
-
-  if (!product) {
-    return <p>Now Loading...</p>;
-  }
-
-  return (
-    <Container>
-      <Background />
-      <Detail>
-        <ImageWrapper>
-          <Image>
-            <img src={product.imageUrl} alt={product.title} />
-          </Image>
-        </ImageWrapper>
-        <DescWrapper>
-          <h4>{product.maker}</h4>
-          <h3>{product.title}</h3>
-          <Table>
-            <tbody>
-              <tr>
-                <th>구매수량</th>
-                <td>{quantity}</td>
-              </tr>
-              <tr>
-                <th>총 상품금액</th>
-                <td>
-                  {numberFormat(totalPrice)}
-                  원
-                </td>
-              </tr>
-              <tr>
-                <th>구매일</th>
-                <td>{dateFormat(createdAt)}</td>
-              </tr>
-              <tr>
-                <th>받는 분</th>
-                <td>{receiver}</td>
-              </tr>
-              <tr>
-                <th>받는 분 주소</th>
-                <td>{address}</td>
-              </tr>
-              <tr>
-                <th>받는 분께 보내는 메세지</th>
-                <td>{message}</td>
-              </tr>
-            </tbody>
-          </Table>
-        </DescWrapper>
-      </Detail>
-    </Container>
-  );
-}
-
 const Container = styled.div`
   position: relative;
 `;
@@ -153,3 +91,65 @@ const Table = styled.table`
     padding-block: 30px;
   }
 `;
+
+export default function OrderDetail() {
+  const orderStore = useOrderStore();
+
+  const { order } = orderStore;
+
+  const {
+    quantity, totalPrice, receiver, address, message, product, createdAt,
+  } = order;
+
+  if (!product) {
+    return <p>Now Loading...</p>;
+  }
+
+  return (
+    <Container>
+      <Background />
+      <Detail>
+        <ImageWrapper>
+          <Image>
+            <img src={product.imageUrl} alt={product.title} />
+          </Image>
+        </ImageWrapper>
+        <DescWrapper>
+          <h4>{product.maker}</h4>
+          <h3>{product.title}</h3>
+          <Table>
+            <tbody>
+              <tr>
+                <th>구매수량</th>
+                <td>{quantity}</td>
+              </tr>
+              <tr>
+                <th>총 상품금액</th>
+                <td>
+                  {numberFormat(totalPrice)}
+                  원
+                </td>
+              </tr>
+              <tr>
+                <th>구매일</th>
+                <td>{dateFormat(createdAt)}</td>
+              </tr>
+              <tr>
+                <th>받는 분</th>
+                <td>{receiver}</td>
+              </tr>
+              <tr>
+                <th>받는 분 주소</th>
+                <td>{address}</td>
+              </tr>
+              <tr>
+                <th>받는 분께 보내는 메세지</th>
+                <td>{message}</td>
+              </tr>
+            </tbody>
+          </Table>
+        </DescWrapper>
+      </Detail>
+    </Container>
+  );
+}

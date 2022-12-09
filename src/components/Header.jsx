@@ -8,6 +8,47 @@ import useUserStore from '../hooks/useUserStore';
 
 import { numberFormat } from '../utils/format';
 
+const Container = styled.header`
+  height: 64px;
+
+  border-bottom: 1px solid ${((props) => props.theme.colors.border)};
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+
+  padding-inline: 10em;
+
+  font-size: 1em;
+  font-weight: 700;
+`;
+
+const List = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+
+  h1 {
+    cursor: default;
+    
+    font-size: 1.5em;
+  }
+`;
+
+const Button = styled.button`
+  color: ${((props) => props.theme.text.primary)};
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1em;
+  font-weight: 700;
+`;
+
 export default function Header() {
   const userStore = useUserStore();
 
@@ -69,44 +110,3 @@ export default function Header() {
     </Container>
   );
 }
-
-const Container = styled.header`
-  height: 64px;
-
-  border-bottom: 1px solid ${((props) => props.theme.colors.border)};
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  height: 100%;
-
-  padding-inline: 10em;
-
-  font-size: 1em;
-  font-weight: 700;
-`;
-
-const List = styled.ul`
-  display: flex;
-  align-items: center;
-  gap: 1.5em;
-
-  h1 {
-    cursor: default;
-    
-    font-size: 1.5em;
-  }
-`;
-
-const Button = styled.button`
-  color: ${((props) => props.theme.text.primary)};
-  background-color: inherit;
-  border: none;
-  cursor: pointer;
-
-  font-size: 1em;
-  font-weight: 700;
-`;

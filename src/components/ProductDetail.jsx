@@ -12,117 +12,9 @@ import useOrderStore from '../hooks/useOrderStore';
 
 import { numberFormat } from '../utils/format';
 
-import Button from './common/Button';
-
 import { icons } from '../assets';
 
-export default function ProductDetail() {
-  const userStore = useUserStore();
-  const productStore = useProductStore();
-  const orderStore = useOrderStore();
-
-  const { product } = productStore;
-  const {
-    title, price, maker, description, imageUrl,
-  } = product;
-
-  const [accessToken] = useLocalStorage('accessToken', '');
-
-  const [isClicked, setIsClicked] = useState(false);
-  const [quantity, setQuantity] = useState(1);
-  const totalPrice = price * quantity;
-
-  const handleClickDecrease = () => {
-    if (quantity <= 1) {
-      return;
-    }
-
-    setQuantity((prev) => prev - 1);
-  };
-
-  const handleClickIncrease = () => {
-    setQuantity((prev) => prev + 1);
-  };
-
-  const navigate = useNavigate();
-
-  const handleClickOrder = () => {
-    if (!accessToken) {
-      navigate('/login', { state: { previousPage: 'productDetail' } });
-
-      return;
-    }
-
-    if (!userStore.isAffordable(totalPrice)) {
-      setIsClicked(true);
-      return;
-    }
-
-    orderStore.setQuantityAndTotalPrice({ quantity, totalPrice });
-    navigate('/order');
-  };
-
-  return (
-    <Container>
-      <ImageWrapper>
-        <img src={imageUrl} alt={title} />
-      </ImageWrapper>
-      <DescWrapper>
-        <Title>{title}</Title>
-        <Price>
-          {numberFormat(price)}
-          원
-        </Price>
-        <Table>
-          <tbody>
-            <tr>
-              <th>제조사</th>
-              <td>{maker}</td>
-            </tr>
-            <tr>
-              <th>구매수량</th>
-              <td>
-                <Quantity>
-                  <div className="quantity-wrapper">
-                    <MinusButton
-                      type="button"
-                      onClick={handleClickDecrease}
-                    />
-                    <span>{quantity}</span>
-                    <PlusButton
-                      type="button"
-                      onClick={handleClickIncrease}
-                    />
-                  </div>
-                </Quantity>
-              </td>
-            </tr>
-            <tr>
-              <th>상품설명</th>
-              <td>{description}</td>
-            </tr>
-          </tbody>
-        </Table>
-        <TotalPrice>
-          총 상품금액:
-          {'  '}
-          <strong>
-            {numberFormat(totalPrice)}
-            원
-          </strong>
-        </TotalPrice>
-        <Button
-          type="button"
-          onClick={handleClickOrder}
-        >
-          선물하기
-        </Button>
-        {isClicked && !userStore.isAffordable(totalPrice)
-        && <Warning>❌ 잔액이 부족하여 선물하기가 불가합니다 ❌</Warning>}
-      </DescWrapper>
-    </Container>
-  );
-}
+import Button from './common/Button';
 
 const Container = styled.article`
   display: flex;
@@ -255,3 +147,111 @@ const Warning = styled.p`
   color: ${((props) => props.theme.text.red)};
   text-align: center;
 `;
+
+export default function ProductDetail() {
+  const userStore = useUserStore();
+  const productStore = useProductStore();
+  const orderStore = useOrderStore();
+
+  const { product } = productStore;
+  const {
+    title, price, maker, description, imageUrl,
+  } = product;
+
+  const [accessToken] = useLocalStorage('accessToken', '');
+
+  const [isClicked, setIsClicked] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const totalPrice = price * quantity;
+
+  const handleClickDecrease = () => {
+    if (quantity <= 1) {
+      return;
+    }
+
+    setQuantity((prev) => prev - 1);
+  };
+
+  const handleClickIncrease = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const navigate = useNavigate();
+
+  const handleClickOrder = () => {
+    if (!accessToken) {
+      navigate('/login', { state: { previousPage: 'productDetail' } });
+
+      return;
+    }
+
+    if (!userStore.isAffordable(totalPrice)) {
+      setIsClicked(true);
+      return;
+    }
+
+    orderStore.setQuantityAndTotalPrice({ quantity, totalPrice });
+    navigate('/order');
+  };
+
+  return (
+    <Container>
+      <ImageWrapper>
+        <img src={imageUrl} alt={title} />
+      </ImageWrapper>
+      <DescWrapper>
+        <Title>{title}</Title>
+        <Price>
+          {numberFormat(price)}
+          원
+        </Price>
+        <Table>
+          <tbody>
+            <tr>
+              <th>제조사</th>
+              <td>{maker}</td>
+            </tr>
+            <tr>
+              <th>구매수량</th>
+              <td>
+                <Quantity>
+                  <div className="quantity-wrapper">
+                    <MinusButton
+                      type="button"
+                      onClick={handleClickDecrease}
+                    />
+                    <span>{quantity}</span>
+                    <PlusButton
+                      type="button"
+                      onClick={handleClickIncrease}
+                    />
+                  </div>
+                </Quantity>
+              </td>
+            </tr>
+            <tr>
+              <th>상품설명</th>
+              <td>{description}</td>
+            </tr>
+          </tbody>
+        </Table>
+        <TotalPrice>
+          총 상품금액:
+          {'  '}
+          <strong>
+            {numberFormat(totalPrice)}
+            원
+          </strong>
+        </TotalPrice>
+        <Button
+          type="button"
+          onClick={handleClickOrder}
+        >
+          선물하기
+        </Button>
+        {isClicked && !userStore.isAffordable(totalPrice)
+        && <Warning>❌ 잔액이 부족하여 선물하기가 불가합니다 ❌</Warning>}
+      </DescWrapper>
+    </Container>
+  );
+}

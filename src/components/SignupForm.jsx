@@ -11,6 +11,78 @@ import useUserStore from '../hooks/useUserStore';
 import Button from './common/Button';
 import Input from './common/Input';
 
+const Container = styled.article`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+`;
+
+const Title = styled.h2`
+  padding-block: 4px;
+
+  border-bottom: 1px solid ${((props) => props.theme.colors.primary)};
+
+  font-size: ${((props) => props.theme.size.h1)};
+  font-weight: 700;
+  text-align: center;
+`;
+
+const Inputs = styled.div`
+  min-width: 390px;
+
+  margin-block: 60px;
+
+  color: ${((props) => props.theme.text.gray)};
+`;
+
+const InputWrapper = styled.div`
+  & + & {
+    margin-top: 24px;
+  }
+`;
+
+const Label = styled.label`
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 15px;
+  font-weight: 700;
+`;
+
+const ErrorMessage = styled.p`
+  margin-top: 8px;
+
+  font-size: 15px;
+
+  color: ${((props) => props.theme.text.red)};
+`;
+
+const DefaultMessage = styled.p`
+  margin-top: 8px;
+
+  font-size: 15px;
+`;
+
+const SignupCompleted = styled(Container)`
+  h2 {
+    margin-bottom: 16px;
+
+    font-size: ${((props) => props.theme.size.h1)};
+    font-weight: 700;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 40px;
+
+    font-size: ${((props) => props.theme.size.h5)};
+    text-align: center;
+  }
+`;
+
 export default function SignupForm() {
   const userStore = useUserStore();
 
@@ -132,75 +204,3 @@ export default function SignupForm() {
     </Container>
   );
 }
-
-const Container = styled.article`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 100%;
-`;
-
-const Title = styled.h2`
-  padding-block: 4px;
-
-  border-bottom: 1px solid ${((props) => props.theme.colors.primary)};
-
-  font-size: ${((props) => props.theme.size.h1)};
-  font-weight: 700;
-  text-align: center;
-`;
-
-const Inputs = styled.div`
-  min-width: 390px;
-
-  margin-block: 60px;
-
-  color: ${((props) => props.theme.text.gray)};
-`;
-
-const InputWrapper = styled.div`
-  & + & {
-    margin-top: 24px;
-  }
-`;
-
-const Label = styled.label`
-  display: block;
-
-  margin-bottom: 8px;
-
-  font-size: 15px;
-  font-weight: 700;
-`;
-
-const ErrorMessage = styled.p`
-  margin-top: 8px;
-
-  font-size: 15px;
-
-  color: ${((props) => props.theme.text.red)};
-`;
-
-const DefaultMessage = styled.p`
-  margin-top: 8px;
-
-  font-size: 15px;
-`;
-
-const SignupCompleted = styled(Container)`
-  h2 {
-    margin-bottom: 16px;
-
-    font-size: ${((props) => props.theme.size.h1)};
-    font-weight: 700;
-    text-align: center;
-  }
-
-  p {
-    margin-bottom: 40px;
-
-    font-size: ${((props) => props.theme.size.h5)};
-    text-align: center;
-  }
-`;
