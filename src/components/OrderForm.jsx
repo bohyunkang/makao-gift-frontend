@@ -124,12 +124,12 @@ const Container = styled.article`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  height: 100%;
+  
+  margin-top: 80px;
 `;
 
 const Wrapper = styled.div`
-  width: 1180px;
+  min-width: 1180px;
 
   padding: 80px 140px 40px;
 

@@ -25,8 +25,9 @@ const Container = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  min-height: 100%;
 
-  height: 100%;
   padding-inline: 15em;
 `;
 
