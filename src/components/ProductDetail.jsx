@@ -14,6 +14,8 @@ import { numberFormat } from '../utils/format';
 
 import Button from './common/Button';
 
+import { icons } from '../assets';
+
 export default function ProductDetail() {
   const userStore = useUserStore();
   const productStore = useProductStore();
@@ -80,22 +82,19 @@ export default function ProductDetail() {
             <tr>
               <th>구매수량</th>
               <td>
-                <div>
-                  {/* TODO: 버튼 마크업 추가! */}
-                  <button
-                    type="button"
-                    onClick={handleClickDecrease}
-                  >
-                    -
-                  </button>
-                  <span>{quantity}</span>
-                  <button
-                    type="button"
-                    onClick={handleClickIncrease}
-                  >
-                    +
-                  </button>
-                </div>
+                <Quantity>
+                  <div className="quantity-wrapper">
+                    <MinusButton
+                      type="button"
+                      onClick={handleClickDecrease}
+                    />
+                    <span>{quantity}</span>
+                    <PlusButton
+                      type="button"
+                      onClick={handleClickIncrease}
+                    />
+                  </div>
+                </Quantity>
               </td>
             </tr>
             <tr>
@@ -129,7 +128,7 @@ const Container = styled.article`
   display: flex;
   justify-content: space-around;
   align-items: center;
-
+  
   padding-inline: 10em;
   padding-top: 80px;
 
@@ -190,6 +189,49 @@ const Table = styled.table`
   th, td {
     padding-block: 20px;
   }
+`;
+
+const Quantity = styled.div`
+  display: inline-block;
+  
+  width: 120px;
+
+  padding: 6px 9px;
+
+  border: 1px solid ${((props) => props.theme.colors.border)};
+  border-radius: 8px;
+
+  .quantity-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  span {
+    margin-inline: 27px;
+  }
+`;
+
+const QuantityButton = styled.button`
+  background: inherit; 
+  border: none; 
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+
+  width: 15px;
+  height: 15px;
+  /* border: 1px solid red; */
+`;
+
+const PlusButton = styled(QuantityButton)`
+  background: url(${icons.plus}) no-repeat 100% 100%;
+`;
+
+const MinusButton = styled(QuantityButton)`
+  background: url(${icons.minus}) no-repeat 0 50%;
 `;
 
 const TotalPrice = styled.h3`
