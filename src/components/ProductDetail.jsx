@@ -12,7 +12,141 @@ import useOrderStore from '../hooks/useOrderStore';
 
 import { numberFormat } from '../utils/format';
 
+import { icons } from '../assets';
+
 import Button from './common/Button';
+
+const Container = styled.article`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+  padding-inline: 10em;
+  padding-top: 80px;
+
+  color: ${((props) => props.theme.text.secondary)};
+`;
+
+const ImageWrapper = styled.div`
+  width: 600px;
+  height: 600px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const DescWrapper = styled.div`
+  width: 500px;
+
+`;
+
+const Title = styled.h3`
+  margin-bottom: 24px;
+
+  font-size: ${((props) => props.theme.size.h3)};
+  font-weight: 500;
+`;
+
+const Price = styled.h2`
+  margin-bottom: 40px;
+
+  font-size: ${((props) => props.theme.size.h1)};
+  font-weight: 700;
+`;
+
+const Table = styled.table`
+  width: 100%;
+
+  tr {
+    border-top: 1px solid ${((props) => props.theme.colors.border)};
+    border-bottom: 1px solid ${((props) => props.theme.colors.border)};
+  }
+
+  th {
+    padding-right: 60px;
+
+    color: #666666;
+
+    font-size: ${((props) => props.theme.size.default)};
+    font-weight: 500;
+    text-align: left;
+  }
+
+  td {
+    font-size: ${((props) => props.theme.size.h5)};
+  }
+
+  th, td {
+    padding-block: 20px;
+  }
+`;
+
+const Quantity = styled.div`
+  display: inline-block;
+  
+  width: 120px;
+
+  padding: 6px 9px;
+
+  border: 1px solid ${((props) => props.theme.colors.border)};
+  border-radius: 8px;
+
+  .quantity-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  span {
+    margin-inline: 27px;
+  }
+`;
+
+const QuantityButton = styled.button`
+  background: inherit; 
+  border: none; 
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+
+  width: 15px;
+  height: 15px;
+  /* border: 1px solid red; */
+`;
+
+const PlusButton = styled(QuantityButton)`
+  background: url(${icons.plus}) no-repeat 100% 100%;
+`;
+
+const MinusButton = styled(QuantityButton)`
+  background: url(${icons.minus}) no-repeat 0 50%;
+`;
+
+const TotalPrice = styled.h3`
+  margin-block: 30px;
+
+  font-size: ${((props) => props.theme.size.default)};
+  font-weight: 500;
+  text-align: right;
+
+  strong {
+    vertical-align: middle;
+
+    font-size: ${((props) => props.theme.size.h1)};
+    font-weight: 700;
+  }
+`;
+
+const Warning = styled.p`
+  margin-top: 20px;
+
+  color: ${((props) => props.theme.text.red)};
+  text-align: center;
+`;
 
 export default function ProductDetail() {
   const userStore = useUserStore();
@@ -80,22 +214,19 @@ export default function ProductDetail() {
             <tr>
               <th>구매수량</th>
               <td>
-                <div>
-                  {/* TODO: 버튼 마크업 추가! */}
-                  <button
-                    type="button"
-                    onClick={handleClickDecrease}
-                  >
-                    -
-                  </button>
-                  <span>{quantity}</span>
-                  <button
-                    type="button"
-                    onClick={handleClickIncrease}
-                  >
-                    +
-                  </button>
-                </div>
+                <Quantity>
+                  <div className="quantity-wrapper">
+                    <MinusButton
+                      type="button"
+                      onClick={handleClickDecrease}
+                    />
+                    <span>{quantity}</span>
+                    <PlusButton
+                      type="button"
+                      onClick={handleClickIncrease}
+                    />
+                  </div>
+                </Quantity>
               </td>
             </tr>
             <tr>
@@ -124,92 +255,3 @@ export default function ProductDetail() {
     </Container>
   );
 }
-
-const Container = styled.article`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  padding-inline: 10em;
-  padding-top: 80px;
-
-  color: ${((props) => props.theme.text.secondary)};
-`;
-
-const ImageWrapper = styled.div`
-  width: 600px;
-  height: 600px;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const DescWrapper = styled.div`
-  width: 500px;
-
-`;
-
-const Title = styled.h3`
-  margin-bottom: 24px;
-
-  font-size: ${((props) => props.theme.size.h3)};
-  font-weight: 500;
-`;
-
-const Price = styled.h2`
-  margin-bottom: 40px;
-
-  font-size: ${((props) => props.theme.size.h1)};
-  font-weight: 700;
-`;
-
-const Table = styled.table`
-  width: 100%;
-
-  tr {
-    border-top: 1px solid ${((props) => props.theme.colors.border)};
-    border-bottom: 1px solid ${((props) => props.theme.colors.border)};
-  }
-
-  th {
-    padding-right: 60px;
-
-    color: #666666;
-
-    font-size: ${((props) => props.theme.size.default)};
-    font-weight: 500;
-    text-align: left;
-  }
-
-  td {
-    font-size: ${((props) => props.theme.size.h5)};
-  }
-
-  th, td {
-    padding-block: 20px;
-  }
-`;
-
-const TotalPrice = styled.h3`
-  margin-block: 30px;
-
-  font-size: ${((props) => props.theme.size.default)};
-  font-weight: 500;
-  text-align: right;
-
-  strong {
-    vertical-align: middle;
-
-    font-size: ${((props) => props.theme.size.h1)};
-    font-weight: 700;
-  }
-`;
-
-const Warning = styled.p`
-  margin-top: 20px;
-
-  color: ${((props) => props.theme.text.red)};
-  text-align: center;
-`;

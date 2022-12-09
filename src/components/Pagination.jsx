@@ -6,6 +6,60 @@ import styled from 'styled-components';
 
 import usePagination from '../hooks/usePagination';
 
+const Nav = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+
+  padding-bottom: 5em;
+
+  font-weight: 600;
+`;
+
+const List = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+`;
+
+const Dots = styled.li`
+  padding: 10px;
+
+  cursor: default;
+`;
+
+const LinkItem = styled(Link)`
+  display: block;
+  padding: 10px 15px;
+  border-radius: 50%;
+  
+  background-color: ${(props) => (props.selected ? props.theme.colors.secondary : 'none')};
+
+  &:hover {
+    color: ${(props) => (props.selected ? 'none' : props.theme.colors.secondary)};
+  }
+`;
+
+const Button = styled.button`
+  background: inherit; 
+  border:none; 
+  box-shadow:none; 
+  border-radius:0; 
+  padding:0; 
+  overflow:visible; 
+
+  padding: 10px 15px;
+  
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+
+  font-size: 18px;
+
+  &:hover {
+    color: ${(props) => (props.disabled ? 'none' : props.theme.colors.primary)};
+  }
+`;
+
 export default function Pagination({ url, total, current }) {
   const navigate = useNavigate();
 
@@ -68,57 +122,3 @@ export default function Pagination({ url, total, current }) {
     </Nav>
   );
 }
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-
-  padding-bottom: 5em;
-
-  font-weight: 600;
-`;
-
-const List = styled.ul`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-`;
-
-const Dots = styled.li`
-  padding: 10px;
-
-  cursor: default;
-`;
-
-const LinkItem = styled(Link)`
-  display: block;
-  padding: 10px 15px;
-  border-radius: 50%;
-  
-  background-color: ${(props) => (props.selected ? props.theme.colors.secondary : 'none')};
-
-  &:hover {
-    color: ${(props) => (props.selected ? 'none' : props.theme.colors.secondary)};
-  }
-`;
-
-const Button = styled.button`
-  background: inherit; 
-  border:none; 
-  box-shadow:none; 
-  border-radius:0; 
-  padding:0; 
-  overflow:visible; 
-
-  padding: 10px 15px;
-  
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
-
-  font-size: 18px;
-
-  &:hover {
-    color: ${(props) => (props.disabled ? 'none' : props.theme.colors.primary)};
-  }
-`;

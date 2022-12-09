@@ -7,6 +7,35 @@ import useOrderStore from '../hooks/useOrderStore';
 import OrderItem from './OrderItem';
 import Pagination from './Pagination';
 
+const Container = styled.article`
+  width: 1180px;
+  
+  margin: 0 auto;
+`;
+
+const Title = styled.h2`
+  padding-block: 80px 40px;
+
+  font-weight: 700;
+  font-size: ${((props) => props.theme.size.h4)};
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  padding-bottom: 80px;
+`;
+
+const NoContent = styled.p`
+  margin-top: 80px;
+
+  font-weight: 700;
+  font-size: ${((props) => props.theme.size.h4)};
+  text-align: center;
+`;
+
 export default function OrderList() {
   const orderStore = useOrderStore();
 
@@ -41,32 +70,3 @@ export default function OrderList() {
     </Container>
   );
 }
-
-const Container = styled.article`
-  width: 1180px;
-  
-  margin: 0 auto;
-`;
-
-const Title = styled.h2`
-  padding-block: 80px 40px;
-
-  font-weight: 700;
-  font-size: ${((props) => props.theme.size.h4)};
-`;
-
-const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-
-  padding-bottom: 80px;
-`;
-
-const NoContent = styled.p`
-  margin-top: 80px;
-
-  font-weight: 700;
-  font-size: ${((props) => props.theme.size.h4)};
-  text-align: center;
-`;

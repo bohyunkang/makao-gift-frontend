@@ -9,12 +9,24 @@ module.exports = () => actor({
   setupDatabase() {
     this.amOnPage(`${backdoorBaseUrl}/setup-database`);
   },
+  signup() {
+    this.resetDatabase();
+    this.amOnPage('/signup');
+
+    this.fillField('이름', '강보니');
+    this.fillField('아이디', 'boni1234');
+    this.fillField('비밀번호', 'Test1234!');
+    this.fillField('비밀번호 확인', 'Test1234!');
+    this.submit();
+
+    this.waitForText('회원가입 완료');
+  },
   login() {
     this.amOnPage('/login');
 
     this.fillField('아이디', 'boni1234');
     this.fillField('비밀번호', 'Test1234!');
-    this.click('[type=submit]');
+    this.submit();
 
     this.waitForText('로그아웃');
   },

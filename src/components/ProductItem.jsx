@@ -4,28 +4,6 @@ import styled from 'styled-components';
 
 import { numberFormat } from '../utils/format';
 
-export default function ProductItem({ product }) {
-  const {
-    id, imageUrl, maker, title, price,
-  } = product;
-
-  return (
-    <Link to={`/products/${id}`}>
-      <Container>
-        <ImageWrapper>
-          <img src={imageUrl} alt={title} />
-        </ImageWrapper>
-        <h4>{maker}</h4>
-        <h3>{title}</h3>
-        <strong>
-          {numberFormat(price)}
-          원
-        </strong>
-      </Container>
-    </Link>
-  );
-}
-
 const Container = styled.li`
   width: 280px;
   height: 100%;
@@ -70,3 +48,25 @@ const ImageWrapper = styled.div`
     height: 100%;
   }
 `;
+
+export default function ProductItem({ product }) {
+  const {
+    id, imageUrl, maker, title, price,
+  } = product;
+
+  return (
+    <Link to={`/products/${id}`}>
+      <Container>
+        <ImageWrapper>
+          <img src={imageUrl} alt={title} />
+        </ImageWrapper>
+        <h4>{maker}</h4>
+        <h3>{title}</h3>
+        <strong>
+          {numberFormat(price)}
+          원
+        </strong>
+      </Container>
+    </Link>
+  );
+}

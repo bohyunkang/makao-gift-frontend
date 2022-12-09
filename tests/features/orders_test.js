@@ -2,6 +2,8 @@ Feature('주문 내역 페이지');
 
 Scenario('주문한 내역이 하나도 없는 경우', ({ I }) => {
   // Given
+  I.resetDatabase();
+  I.signup();
   I.login();
   I.amOnPage('/');
   I.click('주문조회');

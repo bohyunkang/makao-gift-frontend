@@ -11,6 +11,47 @@ import useUserStore from '../hooks/useUserStore';
 import Button from './common/Button';
 import Input from './common/Input';
 
+const Container = styled.article`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  a {
+    display: block;
+
+    margin-top: 60px;
+
+    text-align: center;
+  }
+`;
+
+const Title = styled.h2`
+  padding-block: 4px;
+
+  border-bottom: 1px solid ${((props) => props.theme.colors.primary)};
+
+  font-size: ${((props) => props.theme.size.h1)};
+  font-weight: 700;
+  text-align: center;
+`;
+
+const Inputs = styled.div`
+  margin-top: 60px;
+`;
+
+const Error = styled.div`
+  height: 60px;
+  
+  p {
+    padding-top: 20px;
+    
+    font-size: 15px;
+    color: ${((props) => props.theme.text.red)};
+  }
+`;
+
 export default function LoginForm({ location }) {
   const userStore = useUserStore();
 
@@ -74,44 +115,3 @@ export default function LoginForm({ location }) {
     </Container>
   );
 }
-
-const Container = styled.article`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 100%;
-
-  a {
-    display: block;
-
-    margin-top: 60px;
-
-    text-align: center;
-  }
-`;
-
-const Title = styled.h2`
-  padding-block: 4px;
-
-  border-bottom: 1px solid ${((props) => props.theme.colors.primary)};
-
-  font-size: ${((props) => props.theme.size.h1)};
-  font-weight: 700;
-  text-align: center;
-`;
-
-const Inputs = styled.div`
-  margin-top: 60px;
-`;
-
-const Error = styled.div`
-  height: 60px;
-  
-  p {
-    padding-top: 20px;
-    
-    font-size: 15px;
-    color: ${((props) => props.theme.text.red)};
-  }
-`;
