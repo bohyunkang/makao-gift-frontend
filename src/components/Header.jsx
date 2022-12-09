@@ -28,7 +28,7 @@ export default function Header() {
         <List>
           <li>
             <h1>
-              <Link to="/">선물하기</Link>
+              선물하기
             </h1>
           </li>
           <li>
@@ -95,6 +95,8 @@ const List = styled.ul`
   gap: 1.5em;
 
   h1 {
+    cursor: default;
+    
     font-size: 1.5em;
   }
 `;

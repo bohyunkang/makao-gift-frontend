@@ -71,6 +71,9 @@ const server = setupServer(
   )),
   rest.get(`${baseUrl}/products`, async (req, res, ctx) => res(
     ctx.json({
+      pages: {
+        totalPages: 1,
+      },
       products: [
         {
           id: 1,
@@ -103,6 +106,9 @@ const server = setupServer(
   )),
   rest.get(`${baseUrl}/orders`, async (req, res, ctx) => res(
     ctx.json({
+      pages: {
+        totalPages: 1,
+      },
       orders: [
         {
           id: 1,

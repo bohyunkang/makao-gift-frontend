@@ -44,7 +44,6 @@ export default class UserStore extends Store {
         username, password,
       });
 
-      this.accessToken = accessToken;
       this.name = name;
       this.amount = amount;
 

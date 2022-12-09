@@ -11,7 +11,7 @@ import theme from '../styles/theme';
 import ProductList from './ProductList';
 
 test('ProductList', async () => {
-  productStore.fetchProducts();
+  productStore.fetchProducts({ page: 1, size: 12 });
 
   render((
     <MemoryRouter>
