@@ -52,10 +52,9 @@ export default function ProductsList() {
           <Title>인기선물을 한 자리에 모았어요</Title>
           <List>
             {products.map((product) => (
-              <ProductItem
-                key={product.id}
-                product={product}
-              />
+              <li key={product.id}>
+                <ProductItem product={product} />
+              </li>
             ))}
           </List>
           <Pagination
