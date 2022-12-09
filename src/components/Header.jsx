@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useLocalStorage } from 'usehooks-ts';
 
@@ -39,6 +39,10 @@ const List = styled.ul`
   }
 `;
 
+const NavLink = styled(Link)`
+  border-bottom: ${(props) => (props.selected ? '3px solid #22DAAB' : 'none')};
+`;
+
 const Button = styled.button`
   color: ${((props) => props.theme.text.primary)};
   background-color: inherit;
@@ -58,6 +62,9 @@ export default function Header() {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const { pathname } = location;
+
   const handleLogout = () => {
     setAccessToken('');
     navigate('/');
@@ -73,13 +80,28 @@ export default function Header() {
             </h1>
           </li>
           <li>
-            <Link to="/">홈</Link>
+            <NavLink
+              to="/"
+              selected={pathname === '/'}
+            >
+              홈
+            </NavLink>
           </li>
           <li>
-            <Link to="/products">스토어</Link>
+            <NavLink
+              to="/products"
+              selected={pathname.startsWith('/products')}
+            >
+              스토어
+            </NavLink>
           </li>
           <li>
-            <Link to="/orders">주문조회</Link>
+            <NavLink
+              to="/orders"
+              selected={pathname.startsWith('/orders')}
+            >
+              주문조회
+            </NavLink>
           </li>
         </List>
         {accessToken ? (
