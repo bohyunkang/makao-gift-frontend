@@ -15,6 +15,8 @@ export default class OrderStore extends Store {
 
     this.orders = [];
     this.order = {};
+
+    this.totalPages = 0;
   }
 
   async processOrder({
@@ -47,11 +49,15 @@ export default class OrderStore extends Store {
     }
   }
 
-  async fetchOrders() {
+  async fetchOrders({ page, size }) {
     this.orders = [];
+    this.totalPages = 0;
     this.publish();
 
-    this.orders = await apiService.fetchOrders();
+    const { orders, pages } = await apiService.fetchOrders({ page, size });
+
+    this.orders = orders;
+    this.totalPages = pages.totalPages;
     this.publish();
   }
 

@@ -43,7 +43,7 @@ describe('OrderStore', () => {
     it('주문 목록 조회하기', async () => {
       const orderStore = new OrderStore();
 
-      await orderStore.fetchOrders();
+      await orderStore.fetchOrders({ page: 1, size: 8 });
 
       expect(orderStore.orders[0].receiver).toBe('전제나');
       expect(orderStore.orders[1].receiver).toBe('최쥬쥬');

@@ -11,7 +11,7 @@ import theme from '../styles/theme';
 import OrderList from './OrderList';
 
 test('OrderList', async () => {
-  orderStore.fetchOrders();
+  orderStore.fetchOrders({ page: 1, size: 8 });
 
   render((
     <MemoryRouter>

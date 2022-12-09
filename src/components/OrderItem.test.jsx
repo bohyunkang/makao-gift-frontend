@@ -11,7 +11,7 @@ import theme from '../styles/theme';
 import OrderItem from './OrderItem';
 
 test('OrderItem', async () => {
-  await orderStore.fetchOrders();
+  await orderStore.fetchOrders({ page: 1, size: 8 });
 
   render((
     <MemoryRouter>

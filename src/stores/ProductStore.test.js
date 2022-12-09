@@ -7,9 +7,10 @@ describe('ProductStore', () => {
     it('상품 목록 조회하기', async () => {
       const productStore = new ProductStore();
 
-      await productStore.fetchProducts();
+      await productStore.fetchProducts({ page: 1, size: 12 });
 
       expect(productStore.products[0].title).toBe('상품1');
+      expect(productStore.totalPages).toBe(1);
     });
   });
 
