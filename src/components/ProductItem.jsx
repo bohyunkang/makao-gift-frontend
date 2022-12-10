@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { numberFormat } from '../utils/format';
 
-const Container = styled.li`
+const Container = styled.div`
   width: 280px;
   height: 100%;
 
