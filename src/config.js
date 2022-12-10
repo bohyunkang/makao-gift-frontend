@@ -1,5 +1,5 @@
 const config = {
-  apiBaseUrl: 'http://localhost:8000',
+  apiBaseUrl: 'https://makao-gift-backend.fly.dev',
 };
 
 export default config;
