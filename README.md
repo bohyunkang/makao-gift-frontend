@@ -1,5 +1,8 @@
 # 마카오 기프트샵(F/E) 🎁
 
+## [🔗 배포 링크](https://makao-gift-frontend.fly.dev)
+
+
 ![image](https://user-images.githubusercontent.com/65386533/206635384-31f7b845-6fad-4c8c-a451-32c3ee229678.png)
 
 ![image](https://user-images.githubusercontent.com/65386533/206635256-2507c9d5-ed56-4f8c-ae9d-16426588edf8.png)
