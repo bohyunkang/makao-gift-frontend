@@ -4,6 +4,7 @@
   "description": "마카오톡 선물하기 프론트엔드",
   "scripts": {
     "start": "parcel index.html --port 8080",
+    "build": "parcel build index.html",
     "lint": "eslint --fix --ext .js,.jsx .",
     "test": "jest",
     "watch:test": "npm test -- --watchAll",
