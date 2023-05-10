@@ -35,7 +35,7 @@ https://user-images.githubusercontent.com/65386533/206629785-efc9b986-8650-479c-
 git clone https://github.com/bohyunkang/makao-gift-frontend.git
 
 2️⃣ 디렉터리 이동
-cd makao-gift-frontedn
+cd makao-gift-frontend
 
 3️⃣ 패키지 설치
 npm install
