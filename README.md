@@ -1,5 +1,12 @@
 # 마카오 기프트샵(F/E) 🎁
 
+## 특징
+- **React**를 이용하여 **Single Page Application 개발**
+- **CDD**를 적용하여 가독성 및 유지보수성을 위한 **관심사 별 컴포넌트 분리**
+- **MicroStore**를 활용하여 전역 상태 관리
+- **React Testing Library**를 이용하여 컴포넌트 **단위 테스트 작성**
+- **CodeceptJS**를 이용하여 **E2E 테스트 작성**
+
 ## [🔗 배포 링크](https://makao-gift-frontend.fly.dev)
 
 
