@@ -7,8 +7,7 @@
 - **React Testing Library**를 이용하여 컴포넌트 **단위 테스트 작성**
 - **CodeceptJS**를 이용하여 **E2E 테스트 작성**
 
-## [🔗 배포 링크](https://makao-gift-frontend.fly.dev)
-
+## [🔗 배포 링크](https://bohyunkang.github.io/makao-gift-frontend)
 
 ![image](https://user-images.githubusercontent.com/65386533/206635384-31f7b845-6fad-4c8c-a451-32c3ee229678.png)
 
